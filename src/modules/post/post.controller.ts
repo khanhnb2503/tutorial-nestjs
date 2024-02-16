@@ -21,7 +21,7 @@ export class PostController {
     @Body() body: CreatePostDto
   ) {
     const response = await this.postService.create(body, files)
-    return response;
+    return response
   }
 
   @Get()
