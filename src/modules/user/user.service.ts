@@ -46,4 +46,9 @@ export class UserService {
     return user
   }
 
+  async findUserByUser(username: string, password: string) {
+    const user = await this.usersModel.findOne({ username: username });
+    return user;
+  }
+
 }

@@ -4,6 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ModulesGlobal } from '../index.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AccessTokenStrategy } from '../auth/strategies/access-token.strategy';
 
 @Module({
   imports: [
