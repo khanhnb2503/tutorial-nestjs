@@ -8,4 +8,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name : Build Example
-        uses: Set up
+        uses: actions/checkout@v3
