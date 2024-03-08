@@ -7,5 +7,5 @@ jobs:
   build_deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "USERNAME=KHANH_NB" >> $GITHUB_ENV
-      - run: echo Hello, $USERNAME
+      - name : Build Example
+        uses: Set up
