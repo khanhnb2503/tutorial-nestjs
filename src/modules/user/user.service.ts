@@ -26,7 +26,7 @@ export class UserService {
   async findAll(query: QueryUserDto): Promise<Users[]> {
     console.log(query)
     const users = await this.usersModel.find();
-    return users;
+    return users
   }
 
   findOne(id: number) {
