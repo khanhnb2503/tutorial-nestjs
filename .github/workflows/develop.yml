@@ -7,4 +7,5 @@ jobs:
   build_deploy:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Example build and deploy"
+      - name : Build Example
+        uses: actions/checkout@v3
