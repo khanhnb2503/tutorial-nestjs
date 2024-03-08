@@ -5,6 +5,7 @@ export const swaggerConfig = (app: INestApplication) => {
   const config = new DocumentBuilder()
     .setTitle('TUTORIAL_NEST_API')
     .addBearerAuth()
+    .addTag('AUTH')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);

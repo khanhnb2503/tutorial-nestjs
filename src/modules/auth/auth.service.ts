@@ -10,17 +10,8 @@ import { comparePassword } from 'src/common';
 export class AuthService {
   constructor(
     private userService: UserService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) { }
-
-  async validateUser(username: string, pass: string): Promise<any> {
-    const user = await this.userService.findUserByUser(username, pass)
-    if (user && comparePassword(pass, user.password)) {
-      const { password, ...result } = user;
-      return result;
-    }
-    return null;
-  }
 
   async login(body: LoginAuthDto) {
     // Xác minh email
@@ -34,13 +25,14 @@ export class AuthService {
     return this.generateTokens(users)
   }
 
+  // Generate tokens
   private async generateTokens(user: any) {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         { username: user.username, sub: user._id.toString() },
         {
           secret: 'N3AHHzKhlYv1wbJRklbcMYpAMMK05CNz3MwKuao67VdYAQn2Oht14WPnvR9DwGKu',
-          expiresIn: '60s'
+          expiresIn: '1h'
         }),
       this.jwtService.signAsync(
         { username: user.username, sub: user._id.toString() },
@@ -51,5 +43,9 @@ export class AuthService {
     ]);
 
     return { accessToken, refreshToken }
+  }
+
+  async validateUser(email: string, pass: string): Promise<any> {
+    return {}
   }
 }

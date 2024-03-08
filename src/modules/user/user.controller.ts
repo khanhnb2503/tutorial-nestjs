@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 import { UserService } from './user.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { AccessTokenGuard } from 'src/guards/access-token.guard';
+import { RequestUser, User } from 'src/decorators';
+import { CreateUserDto, QueryUserDto } from './dto/user.dto';
+import { AnyExpression } from 'mongoose';
 
 @ApiTags('USER')
 @Controller('api/user')
@@ -20,8 +21,8 @@ export class UserController {
   }
 
   @Get('list')
-  async findAll() {
-    const response = await this.userService.findAll();
+  async findAll(@Query() query: QueryUserDto, @User() user: RequestUser) {
+    const response = await this.userService.findAll(query);
     return response
   }
 
@@ -31,7 +32,7 @@ export class UserController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  update(@Param('id') id: string, @Body() updateUserDto: AnyExpression) {
     return this.userService.update(+id, updateUserDto);
   }
 

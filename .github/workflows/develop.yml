@@ -1,0 +1,10 @@
+name: Deploy tutorial-nestjs
+on: 
+  push:
+    branches:
+      - "develop"
+jobs:
+  build_deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Example build and deploy"

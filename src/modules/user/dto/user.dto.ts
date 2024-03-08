@@ -1,6 +1,7 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsEmail, IsNotEmpty, IsString } from "class-validator";
 
+import { BaseQuery } from "src/base/base.query";
 import { IUser } from "src/interfaces";
 
 export class CreateUserDto implements IUser {
@@ -27,4 +28,8 @@ export class CreateUserDto implements IUser {
   @IsNotEmpty()
   @IsString()
   password: string
+}
+
+export class QueryUserDto extends BaseQuery {
+
 }

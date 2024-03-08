@@ -4,8 +4,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ModulesGlobal } from '../index.module';
-import { APP_GUARD } from '@nestjs/core';
-import { AccessTokenStrategy } from '../auth/strategies/access-token.strategy';
 
 @Module({
   imports: [
@@ -13,6 +11,13 @@ import { AccessTokenStrategy } from '../auth/strategies/access-token.strategy';
     ModulesGlobal
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    // Thiết lập Authentication ở tất cả các Router
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: AccessTokenGuard
+    // }
+  ],
 })
 export class AppModule { }
