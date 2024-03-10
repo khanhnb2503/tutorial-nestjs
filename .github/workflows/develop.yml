@@ -1,4 +1,4 @@
-name: Deploy tutorial-nestjs
+name: Deploy_Tutorial_NestJs
 on: 
   push:
     branches:
