@@ -1,3 +1,4 @@
+name: Deploy_Tutorial_NestJs # Nếu ko có 'name' thì mặc định hiển thị tên .github/workflows/develop.yml
 on: 
   push:
     branches:
