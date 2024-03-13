@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 import { AccessTokenGuard } from 'src/guards/access-token.guard';
 import { RequestUser, User } from 'src/decorators';
 import { CreateUserDto, QueryUserDto } from './dto/user.dto';
-import { AnyExpression } from 'mongoose';
+import { ObjectId } from 'mongoose';
 
 @ApiTags('USER')
 @Controller('api/user')
@@ -27,13 +27,13 @@ export class UserController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.userService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: AnyExpression) {
-    return this.userService.update(+id, updateUserDto);
+  update(@Param('id') id: ObjectId | string, @Body() updateUserDto: any) {
+    return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')

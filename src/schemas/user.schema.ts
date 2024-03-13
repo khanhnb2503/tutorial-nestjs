@@ -25,3 +25,4 @@ export class Users implements IUser {
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);
+UsersSchema.index({'$**': 'text'})
