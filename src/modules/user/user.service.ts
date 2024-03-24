@@ -1,7 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, ObjectId } from 'mongoose';
 import { Users, UsersDocument } from 'src/schemas';
 import { InjectModel } from '@nestjs/mongoose';
+import * as _ from 'lodash';
 
 import { passwordEnCryption } from 'src/common';
 import { Errors } from 'src/constants';
@@ -29,11 +30,13 @@ export class UserService {
     return users
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: string) {
+    const user = await this.usersModel.findById(id);
+    if (!user) throw new BadRequestException('Không tồn tại user!');
+    return user
   }
 
-  update(id: number, updateUserDto: any) {
+  update(id: ObjectId | string, updateUserDto: any) {
     return `This action updates a #${id} user`;
   }
 

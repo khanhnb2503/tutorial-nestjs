@@ -22,6 +22,8 @@ export class Users implements IUser {
   @IsString()
   @Prop({ required: true })
   password: string;
+
 }
 
 export const UsersSchema = SchemaFactory.createForClass(Users);
+UsersSchema.index({'$**': 'text'})

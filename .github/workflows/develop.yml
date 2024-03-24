@@ -1,4 +1,4 @@
-name: Deploy_Tutorial_NestJs
+name: Deploy_Tutorial_NestJs # Nếu ko có 'name' thì mặc định hiển thị tên .github/workflows/develop.yml
 on: 
   push:
     branches:
@@ -7,5 +7,10 @@ jobs:
   build_deploy:
     runs-on: ubuntu-latest
     steps:
-      - name : Build Example
-        uses: actions/checkout@v3
+      - name : Print Information To Me
+        env: 
+          USER_NAME: KHANH
+          AGE: 24
+          ADDRESS: NGHE AN
+        run: |
+          echo Hello $USER_NAME,  $AGE year old from $ADDRESS
