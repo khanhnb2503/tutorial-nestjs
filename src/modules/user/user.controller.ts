@@ -6,6 +6,7 @@ import { AccessTokenGuard } from 'src/guards/access-token.guard';
 import { RequestUser, User } from 'src/decorators';
 import { CreateUserDto, QueryUserDto } from './dto/user.dto';
 import { ObjectId } from 'mongoose';
+import { Role, Roles } from 'src/decorators/roles.decorator';
 
 @ApiTags('USER')
 @Controller('api/user')
@@ -22,6 +23,7 @@ export class UserController {
 
   @Get('list')
   async findAll(@Query() query: QueryUserDto, @User() user: RequestUser) {
+    console.log(user)
     const response = await this.userService.findAll(query);
     return response
   }

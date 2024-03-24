@@ -13,4 +13,4 @@ jobs:
           AGE: 24
           ADDRESS: NGHE AN
         run: |
-          echo Hello $USER_NAME,  AGE year old from $ADDRESS
+          echo Hello $USER_NAME,  $AGE year old from $ADDRESS

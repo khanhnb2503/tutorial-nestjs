@@ -4,6 +4,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ModulesGlobal } from '../index.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from 'src/guards/roles.guard';
 
 @Module({
   imports: [
@@ -18,6 +20,12 @@ import { ModulesGlobal } from '../index.module';
     //   provide: APP_GUARD,
     //   useClass: AccessTokenGuard
     // }
+
+    // Thiết lập Authorization
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
   ],
 })
 export class AppModule { }
